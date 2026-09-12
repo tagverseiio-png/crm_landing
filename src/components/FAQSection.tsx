@@ -2,59 +2,49 @@
 
 import { ChevronDown, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
+import { useFirebaseData } from '@/lib/useFirebaseData';
+import SectionSkeleton from '@/components/SectionSkeleton';
 
 export default function FAQSection() {
+  const { data: faqData, loading } = useFirebaseData<any>('landing/faq');
+  
+  // faqData could be an array directly (from seed) or an object with items
+  const faqs = Array.isArray(faqData) ? faqData : (faqData?.items || []);
+  const header = !Array.isArray(faqData) && faqData?.header ? faqData.header : {
+    eyebrow: 'FAQ',
+    title: 'Frequently Asked Questions'
+  };
+  
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
   };
 
-  const faqs = [
-    {
-      q: "What is Flora CRM used for?",
-      a: "An all-in-one workspace for agencies to manage leads, deals, quotes, invoicing, and projects — in one real-time platform instead of scattered tools."
-    },
-    {
-      q: "How does Flora turn a won deal into cash?",
-      a: "Quotes convert to invoices in one click, payments process via Stripe or bank transfer, and the deal auto-marks \"Won\" with a receipt."
-    },
-    {
-      q: "What is the 360° Client Profile?",
-      a: "A single screen showing a contact's deals, invoices, communication history, and lead score, all in one view."
-    },
-    {
-      q: "What integrations does Flora offer?",
-      a: "Native connections to WhatsApp, website webhooks, Meta Ads, Google Analytics, Stripe, and Clearbit — all from the deal view."
-    },
-    {
-      q: "How does Flora capture and assign leads?",
-      a: "Leads come in via website forms and WhatsApp, then get auto-assigned to reps by service type with automatic lead scoring."
-    }
-  ];
+  if (loading) return <SectionSkeleton />;
 
   return (
     <section id="faq" className="py-12 sm:py-36 px-6 max-w-4xl mx-auto">
       <div className="text-center mb-16">
-        <span className="text-sm font-semibold tracking-wide uppercase text-apple-accent">Frequently Asked Questions</span>
+        <span className="text-sm font-semibold tracking-wide uppercase text-apple-accent">{header.eyebrow}</span>
         <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-apple-text mt-3">
-          Everything you need to know.
+          {header.title}
         </h2>
       </div>
 
       <div className="space-y-4">
-        {faqs.map((faq, idx) => (
+        {faqs.map((faq: any, idx: number) => (
           <div key={idx} className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
             <button
               onClick={() => toggleFaq(idx)}
               className="w-full p-6 text-left font-bold text-lg text-slate-900 flex justify-between items-center gap-4 hover:text-apple-accent transition-colors"
             >
-              <span>{faq.q}</span>
+              <span>{faq.q || faq.Q}</span>
               <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 ${openFaq === idx ? 'rotate-180' : ''}`} />
             </button>
             {openFaq === idx && (
               <div className="px-6 pb-6 text-apple-textMuted text-base leading-relaxed border-t border-gray-100 pt-4">
-                {faq.a}
+                {faq.a || faq.A}
               </div>
             )}
           </div>
@@ -72,4 +62,3 @@ export default function FAQSection() {
     </section>
   );
 }
-

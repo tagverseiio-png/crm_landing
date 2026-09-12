@@ -2,111 +2,13 @@
 
 import { CheckCircle2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
-
-const comparisonData = [
-    {
-        feature: 'CRM & PIPELINE MANAGEMENT',
-        replaces: ['HubSpot', 'ActiveCampaign'],
-        cost: 99
-    },
-    {
-        feature: 'UNLIMITED SALES FUNNELS',
-        replaces: ['ClickFunnels', 'Leadpages'],
-        cost: 297
-    },
-    {
-        feature: 'WEBSITE BUILDER',
-        replaces: ['WordPress', 'Squarespace', 'Wix'],
-        cost: 29
-    },
-    {
-        feature: 'ECOMMERCE',
-        replaces: ['Shopify', 'WooCommerce'],
-        cost: 39
-    },
-    {
-        feature: 'SURVEYS & FORMS',
-        replaces: ['Jotform', 'Typeform', 'Wufoo'],
-        cost: 79
-    },
-    {
-        feature: 'EMAIL MARKETING',
-        replaces: ['Mailchimp', 'Constant Contact', 'HubSpot'],
-        cost: 99
-    },
-    {
-        feature: '2-WAY SMS MARKETING',
-        replaces: ['Skipio', 'Podium', 'Sendlane'],
-        cost: 99
-    },
-    {
-        feature: 'BOOKING & APPOINTMENTS',
-        replaces: ['Calendly', 'Acuity Scheduling'],
-        cost: 29
-    },
-    {
-        feature: 'WORKFLOW AUTOMATIONS',
-        replaces: ['Keap', 'ActiveCampaign', 'HubSpot'],
-        cost: 169
-    },
-    {
-        feature: 'AI VOICE AGENT',
-        replaces: ['Air', 'Synthflow'],
-        cost: 199
-    },
-    {
-        feature: 'AI CONTENT & CHAT',
-        replaces: ['Jasper', 'Drift'],
-        cost: 99
-    },
-    {
-        feature: 'AD MANAGEMENT',
-        replaces: ['AdEspresso', 'Madgicx'],
-        cost: 49
-    },
-    {
-        feature: 'SEO & LOCAL LISTINGS',
-        replaces: ['Yext', 'Brightlocal'],
-        cost: 99
-    },
-    {
-        feature: 'COURSES & PRODUCTS',
-        replaces: ['Kajabi', 'Teachable'],
-        cost: 99
-    },
-    {
-        feature: 'COMMUNITIES',
-        replaces: ['Skool', 'Mighty Networks', 'Circle'],
-        cost: 89
-    },
-    {
-        feature: 'CALL TRACKING',
-        replaces: ['CallRail', 'CallTrackingMetrics'],
-        cost: 49
-    },
-    {
-        feature: 'REPUTATION MANAGEMENT',
-        replaces: ['Birdeye', 'Podium'],
-        cost: 159
-    },
-    {
-        feature: 'TRACKING & ANALYTICS',
-        replaces: ['AgencyAnalytics'],
-        cost: 49
-    },
-    {
-        feature: 'DOCUMENT SIGNING',
-        replaces: ['DocuSign', 'PandaDoc'],
-        cost: 47
-    },
-    {
-        feature: 'GRAY-LABELED MOBILE APP',
-        replaces: ['Unique to Flora'],
-        cost: 49
-    }
-];
+import { useFirebaseData } from '@/lib/useFirebaseData';
+import SectionSkeleton from '@/components/SectionSkeleton';
 
 export default function ComparisonSection() {
+    const { data: comparisonData, loading } = useFirebaseData<any[]>('landing/comparison');
+    const safeData = comparisonData || [];
+
     const [currencyOptions, setCurrencyOptions] = useState<Intl.NumberFormatOptions>({
         style: 'currency',
         currency: 'USD',
@@ -157,7 +59,26 @@ export default function ComparisonSection() {
         }
     };
 
-    const totalCost = comparisonData.reduce((acc, curr) => acc + curr.cost, 0);
+    const getCost = (item: any) => {
+        if (!item) return 0;
+        const costsObj = item.costs || item.Costs || {};
+        const currencyCode = (currencyOptions.currency as string).toUpperCase();
+        
+        // Find matching key case-insensitively
+        const exactPrice = Object.entries(costsObj).find(([k]) => k.toUpperCase() === currencyCode)?.[1];
+        
+        return (exactPrice as number) ?? item.cost ?? item.Cost ?? 0;
+    };
+
+    const totalCost = safeData.reduce((acc, curr) => acc + getCost(curr), 0);
+
+    const getFloraCost = (baseCost: number) => {
+        // Just in case flora price can also be object mapped someday, but for now hardcoded to baseCost unless we want to map it
+        // Or we could leave it as 97 if they didn't specify. Wait, let's just leave it as 97 as per original.
+        return baseCost;
+    };
+
+    if (loading) return <SectionSkeleton />;
 
     return (
         <section className="py-12 sm:py-36 px-6 max-w-5xl mx-auto">
@@ -181,20 +102,20 @@ export default function ComparisonSection() {
 
                 {/* Rows */}
                 <div className="divide-y divide-slate-100">
-                    {comparisonData.map((item, index) => (
+                    {safeData.map((item, index) => (
                         <div key={index} className="grid grid-cols-12 gap-4 p-4 sm:p-6 items-center hover:bg-white transition-colors duration-200">
                             <div className="col-span-12 sm:col-span-5 font-bold text-slate-800 text-sm sm:text-base">
                                 {item.feature}
                             </div>
                             <div className="col-span-12 sm:col-span-4 hidden sm:flex justify-center gap-2 flex-wrap">
-                                {item.replaces.map((tool, i) => (
+                                {item.replaces.map((tool: string, i: number) => (
                                     <span key={i} className="px-3 py-1 bg-white border border-slate-200 rounded-full text-xs font-semibold text-slate-600 shadow-sm">
                                         {tool}
                                     </span>
                                 ))}
                             </div>
                             <div className="col-span-6 sm:col-span-1 text-center font-bold text-slate-500">
-                                {formatCurrency(item.cost)}/mo
+                                {formatCurrency(getCost(item))}/mo
                             </div>
                             <div className="col-span-6 sm:col-span-2 flex justify-center">
                                 <div className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 bg-blue-500 text-white rounded-full text-xs sm:text-sm font-bold shadow-md shadow-blue-500/20">
@@ -231,4 +152,3 @@ export default function ComparisonSection() {
         </section>
     );
 }
-
