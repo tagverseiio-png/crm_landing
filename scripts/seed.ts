@@ -260,44 +260,44 @@ const landingData = {
         },
         plans: [
             {
-                name: "Solo",
-                subtitle: "For freelancers & independent consultants",
+                name: "Single User",
+                subtitle: "For freelancers & solo consultants",
                 monthlyPrice: 799,
                 yearlyPrice: 649,
                 monthlyPrices: { INR: 799, USD: 10, EUR: 9, GBP: 8, AUD: 15, CAD: 13, AED: 37, SGD: 13 },
                 yearlyPrices: { INR: 649, USD: 8, EUR: 7, GBP: 6, AUD: 12, CAD: 11, AED: 29, SGD: 11 },
                 perUser: false,
                 features: [
-                    "Leads, Contacts & Deals",
-                    "Quotes, Invoices & Contracts",
-                    "Calendar + WhatsApp & Email",
-                    "AI Chatbot (Optional Add-on)",
-                    "1 User Seat"
+                    "Leads, Contacts & Deals (simplified)",
+                    "Quotation, Invoice & Contracts",
+                    "Calendar + WhatsApp/Email Integration",
+                    "Optional AI Chatbot",
+                    "1 User"
                 ],
                 ctaText: "Start Solo"
             },
             {
-                name: "Starter",
-                subtitle: "For small teams getting structured",
+                name: "Tier 1 (Small Business)",
+                subtitle: "For small teams getting organized",
                 monthlyPrice: 899,
                 yearlyPrice: 719,
                 monthlyPrices: { INR: 899, USD: 11, EUR: 10, GBP: 9, AUD: 17, CAD: 15, AED: 40, SGD: 15 },
                 yearlyPrices: { INR: 719, USD: 9, EUR: 8, GBP: 7, AUD: 13, CAD: 12, AED: 33, SGD: 12 },
                 perUser: true,
-                flatNote: "Or flat ₹3,999/mo for up to 5 users",
+                flatNote: "flat option: ₹3,999/month for up to 5 users",
                 features: [
-                    "Everything in Solo",
-                    "Aggregate Pipeline View",
-                    "UPI-Native Payment Collection",
-                    "Task Manager & Scheduling",
-                    "Social Media & AI Chatbot (Basic)",
-                    "Up to 5 Team Members"
+                    "Everything in Single User",
+                    "Pipeline (aggregate view)",
+                    "UPI-native Payments",
+                    "Basic Task Manager & Schedule Calendar",
+                    "Entry-level Social Media Manager & AI Chatbot",
+                    "Up to 5 Team Members (min. 2)"
                 ],
-                ctaText: "Get Started"
+                ctaText: "Start Tier 1"
             },
             {
-                name: "Growth",
-                subtitle: "The full toolkit for scaling businesses",
+                name: "Tier 2 (Growing Business)",
+                subtitle: "The complete toolkit for growing SMEs",
                 monthlyPrice: 1699,
                 yearlyPrice: 1349,
                 monthlyPrices: { INR: 1699, USD: 20, EUR: 19, GBP: 16, AUD: 31, CAD: 27, AED: 73, SGD: 27 },
@@ -305,36 +305,35 @@ const landingData = {
                 perUser: true,
                 popular: true,
                 badge: "Most Popular",
-                flatNote: "Or flat ₹13,999/mo for up to 15 users",
+                flatNote: "flat option: ₹13,999/month for up to 15 users",
                 features: [
-                    "Everything in Starter",
+                    "Everything in Tier 1",
                     "Full Funnel, Content Hub & Assets",
-                    "Campaign Manager & Full Scheduling",
-                    "Social Media Manager & Projects",
-                    "Analytics Dashboard, Reports & Connectors",
-                    "Up to 15 Team Members"
+                    "Full Schedule Calendar & Campaigns",
+                    "Full Social Media Manager & Projects",
+                    "Full Task Manager, Analytics Dashboard, Reports & Connectors",
+                    "Up to 15 Team Members (min. 6)"
                 ],
-                ctaText: "Start Growing"
+                ctaText: "Start Growth"
             },
             {
-                name: "Scale",
-                subtitle: "Automation & API depth for larger teams",
+                name: "Tier 3 (Established Business)",
+                subtitle: "Automation + API depth for larger teams",
                 monthlyPrice: 52999,
                 yearlyPrice: 2249,
                 monthlyPrices: { INR: 52999, USD: 639, EUR: 589, GBP: 509, AUD: 979, CAD: 859, AED: 2349, SGD: 859 },
                 yearlyPrices: { INR: 2249, USD: 27, EUR: 25, GBP: 22, AUD: 42, CAD: 37, AED: 99, SGD: 37 },
-                perUser: true,
-                annualOnly: true,
-                flatNote: "Flat ₹52,999/mo for up to 40 users",
+                perUser: { monthly: false, yearly: true },
+                annualOnly: false,
+                flatNote: { monthly: "no monthly per-user option; flat option ₹52,999/month for up to 40 users", yearly: "built into annual-only pricing — ₹5,08,788/year flat" },
                 features: [
-                    "Everything in Growth",
-                    "Automation Engine & Webhooks",
-                    "API Gateway & Deep Connectors",
-                    "Full-Capability AI Chatbot",
-                    "Priority Support",
-                    "Up to 40 Team Members"
+                    "Everything in Tier 2",
+                    "Automation Engine & Webhook Manager",
+                    "API Gateway & Full-depth Connectors",
+                    "Full-capability AI Chatbot",
+                    "Up to 40 Team Members (35 paid + 5 free)"
                 ],
-                ctaText: "Contact Sales"
+                ctaText: "Contact Enterprise"
             }
         ]
     },
@@ -400,4 +399,3 @@ async function seed() {
 }
 
 seed();
-                                                                                                                  

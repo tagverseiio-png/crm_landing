@@ -106,8 +106,9 @@ export default function PricingSection() {
             {plans.map((plan: any, idx: number) => {
                 const isPopular = plan.popular === true;
                 const isAnnualOnly = plan.annualOnly === true;
-                const isPerUser = plan.perUser === true;
+                const isPerUser = typeof plan.perUser === 'object' ? plan.perUser[billing] : plan.perUser === true;
                 const showMonthlyFlat = billing === 'monthly' && isAnnualOnly;
+
 
                 // For annual-only plans, force yearly display
                 const effectiveBilling = isAnnualOnly ? 'yearly' : billing;
@@ -162,9 +163,9 @@ export default function PricingSection() {
                                 )}
 
                                 {/* Flat note */}
-                                {plan.flatNote && (
+                                {(typeof plan.flatNote === 'object' ? plan.flatNote[billing] : plan.flatNote) && (
                                     <p className="text-[11px] text-slate-500 mt-2 leading-snug">
-                                        {plan.flatNote}
+                                        {typeof plan.flatNote === 'object' ? plan.flatNote[billing] : plan.flatNote}
                                     </p>
                                 )}
                             </div>
