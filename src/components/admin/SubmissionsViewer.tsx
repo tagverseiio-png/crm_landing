@@ -147,3 +147,4 @@ function DetailField({ icon, label, value }: { icon: React.ReactNode; label: str
     </div>
   );
 }
+

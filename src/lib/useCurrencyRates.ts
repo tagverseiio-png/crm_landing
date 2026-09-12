@@ -32,3 +32,4 @@ export function useCurrencyRates() {
 
   return { rates, loading };
 }
+

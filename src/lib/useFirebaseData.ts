@@ -39,3 +39,4 @@ export function useFirebaseData<T>(path: string): { data: T | null; loading: boo
 
   return { data, loading, error };
 }
+

@@ -38,7 +38,7 @@ export default function TestimonialsSection() {
     : {
         eyebrow: 'Testimonials',
         title: 'Loved by teams like yours',
-        subtitle: 'Real feedback from real businesses that switched to Flora.'
+        subtitle: 'Real feedback from real businesses that switched to Velora.'
       };
 
   const goTo = useCallback((index: number) => {
@@ -223,3 +223,4 @@ export default function TestimonialsSection() {
     </section>
   );
 }
+

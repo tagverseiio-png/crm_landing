@@ -27,3 +27,4 @@ export async function getData<T>(path: string): Promise<T | null> {
 
 export { db, auth, database };
 
+

@@ -14,8 +14,8 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'Flora CRM — Run your client business from leads to cash',
-  description: 'Flora brings your leads, deals, quotes, invoices, projects, and marketing into a single real-time workspace.',
+  title: 'Velora CRM — Run your client business from leads to cash',
+  description: 'Velora brings your leads, deals, quotes, invoices, projects, and marketing into a single real-time workspace.',
 };
 
 export default function RootLayout({
@@ -59,4 +59,5 @@ export default function RootLayout({
     </html>
   );
 }
+
 
