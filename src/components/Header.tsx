@@ -13,7 +13,7 @@ export default function Header() {
                 <div className="w-8 h-8 rounded-xl bg-apple-accent text-white flex items-center justify-center font-bold text-lg shadow-sm transition-transform group-hover:scale-105">
                     V
                 </div>
-                <span className="font-semibold text-lg tracking-tight text-apple-text">Velora</span>
+                <span className="font-semibold text-lg tracking-tight text-apple-text">Flora</span>
             </a>
 
             <nav className="hidden md:flex items-center space-x-8 text-sm font-medium text-apple-textMuted">
@@ -66,3 +66,4 @@ export default function Header() {
     </header>
   );
 }
+

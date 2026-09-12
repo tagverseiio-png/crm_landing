@@ -101,7 +101,7 @@ const comparisonData = [
     },
     {
         feature: 'GRAY-LABELED MOBILE APP',
-        replaces: ['Unique to Velora'],
+        replaces: ['Unique to Flora'],
         cost: 49
     }
 ];
@@ -176,7 +176,7 @@ export default function ComparisonSection() {
                     <div className="col-span-12 sm:col-span-5">Features</div>
                     <div className="col-span-12 sm:col-span-4 hidden sm:block text-center">Replaces</div>
                     <div className="col-span-6 sm:col-span-1 text-center">Other tools</div>
-                    <div className="col-span-6 sm:col-span-2 text-center text-blue-600">Velora</div>
+                    <div className="col-span-6 sm:col-span-2 text-center text-blue-600">Flora</div>
                 </div>
 
                 {/* Rows */}
@@ -216,7 +216,7 @@ export default function ComparisonSection() {
 
                     <div className="text-center sm:text-right flex items-center gap-6">
                         <div>
-                            <div className="text-blue-300 font-bold uppercase tracking-wider text-sm mb-1">Velora Price</div>
+                            <div className="text-blue-300 font-bold uppercase tracking-wider text-sm mb-1">Flora Price</div>
                             <div className="text-4xl font-black text-white">{formatCurrency(97)}<span className="text-lg text-blue-200 font-bold">/mo</span></div>
                         </div>
                         <button 
@@ -231,3 +231,4 @@ export default function ComparisonSection() {
         </section>
     );
 }
+

@@ -48,7 +48,7 @@ export default function Home() {
                 </h1>
 
                 <p className={`reveal-element ${mounted ? 'active' : ''} max-w-2xl text-lg sm:text-xl text-apple-textMuted font-normal leading-relaxed mb-10`}>
-                    Velora brings your leads, deals, quotes, invoices, projects, and marketing into a single real-time workspace. No spreadsheets. No disconnected tools.
+                    Flora brings your leads, deals, quotes, invoices, projects, and marketing into a single real-time workspace. No spreadsheets. No disconnected tools.
                 </p>
 
                 <div className={`reveal-element ${mounted ? 'active' : ''} flex flex-col sm:flex-row items-center gap-4 mb-16 w-full sm:w-auto`}>
@@ -333,3 +333,4 @@ export default function Home() {
         </div>
     );
 }
+

@@ -12,11 +12,11 @@ export default function FAQSection() {
 
   const faqs = [
     {
-      q: "What is Velora CRM used for?",
+      q: "What is Flora CRM used for?",
       a: "An all-in-one workspace for agencies to manage leads, deals, quotes, invoicing, and projects — in one real-time platform instead of scattered tools."
     },
     {
-      q: "How does Velora turn a won deal into cash?",
+      q: "How does Flora turn a won deal into cash?",
       a: "Quotes convert to invoices in one click, payments process via Stripe or bank transfer, and the deal auto-marks \"Won\" with a receipt."
     },
     {
@@ -24,11 +24,11 @@ export default function FAQSection() {
       a: "A single screen showing a contact's deals, invoices, communication history, and lead score, all in one view."
     },
     {
-      q: "What integrations does Velora offer?",
+      q: "What integrations does Flora offer?",
       a: "Native connections to WhatsApp, website webhooks, Meta Ads, Google Analytics, Stripe, and Clearbit — all from the deal view."
     },
     {
-      q: "How does Velora capture and assign leads?",
+      q: "How does Flora capture and assign leads?",
       a: "Leads come in via website forms and WhatsApp, then get auto-assigned to reps by service type with automatic lead scoring."
     }
   ];
@@ -72,3 +72,4 @@ export default function FAQSection() {
     </section>
   );
 }
+
