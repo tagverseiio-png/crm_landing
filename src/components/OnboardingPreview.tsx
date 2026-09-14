@@ -17,8 +17,8 @@ export default function OnboardingPreview() {
         { title: onboardingData?.steps?.[0]?.title || 'Company Info', desc: onboardingData?.steps?.[0]?.desc || 'Company name, industry, website', active: true, icon: Building2 },
         { title: onboardingData?.steps?.[1]?.title || 'Location', desc: onboardingData?.steps?.[1]?.desc || 'Address & timezone', active: true, icon: MapPin },
         { title: onboardingData?.steps?.[2]?.title || 'Admin Profile', desc: onboardingData?.steps?.[2]?.desc || 'Full name, role', active: true, icon: UserCog },
-        { title: onboardingData?.steps?.[3]?.title || 'Documents', desc: onboardingData?.steps?.[3]?.desc || 'Currency, GST / PAN', active: false, icon: FileText },
-        { title: onboardingData?.steps?.[4]?.title || 'Finish', desc: onboardingData?.steps?.[4]?.desc || 'Ready to work', active: false, icon: Rocket }
+        { title: onboardingData?.steps?.[3]?.title || 'Documents', desc: onboardingData?.steps?.[3]?.desc || 'Currency, GST / PAN', active: true, icon: FileText },
+        { title: onboardingData?.steps?.[4]?.title || 'Finish', desc: onboardingData?.steps?.[4]?.desc || 'Ready to work', active: true, icon: Rocket }
     ];
 
     if (loading) return <SectionSkeleton />;
@@ -40,7 +40,7 @@ export default function OnboardingPreview() {
                     {/* Connecting line for desktop */}
                     <div className="hidden md:block absolute top-[27px] left-[10%] right-[10%] h-[2px] bg-slate-800 rounded-full"></div>
                     {/* Progress line */}
-                    <div className="hidden md:block absolute top-[27px] left-[10%] w-[60%] h-[2px] bg-apple-accent rounded-full shadow-[0_0_15px_rgba(59,130,246,0.8)]"></div>
+                    <div className="hidden md:block absolute top-[27px] left-[10%] right-[10%] h-[2px] bg-apple-accent rounded-full shadow-[0_0_15px_rgba(59,130,246,0.8)]"></div>
 
                     {steps.map((step, i) => (
                         <div key={i} className={`relative flex flex-row md:flex-col items-center md:justify-center text-left md:text-center gap-5 group ${step.active ? 'opacity-100' : 'opacity-50 grayscale hover:grayscale-0'}`}>
