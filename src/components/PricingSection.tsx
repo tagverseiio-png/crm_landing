@@ -190,7 +190,7 @@ export default function PricingSection() {
                                     : 'bg-slate-100 hover:bg-slate-200 text-apple-text'
                             }`}
                         >
-                            {plan.ctaText || 'Get Started'}
+                            {billing === 'yearly' ? (idx === 0 ? 'Start Solo' : 'Talk to Sales') : (plan.ctaText || 'Get Started')}
                         </button>
                     </div>
                 );
