@@ -12,12 +12,24 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
-const db = getDatabase(app);
-const auth = getAuth(app);
-const database = db;
+let app;
+let db: any;
+let auth: any;
+let database: any;
+
+try {
+  app = getApps().length === 0 && firebaseConfig.projectId ? initializeApp(firebaseConfig) : getApps()[0];
+  if (app) {
+    db = getDatabase(app);
+    auth = getAuth(app);
+    database = db;
+  }
+} catch (error) {
+  console.error("Firebase initialization error", error);
+}
 
 export async function getData<T>(path: string): Promise<T | null> {
+  if (!db) return null;
   const snapshot = await get(ref(db, path));
   if (snapshot.exists()) {
     return snapshot.val() as T;
