@@ -138,37 +138,39 @@ export default function PricingSection() {
                             </div>
 
                             {/* Price */}
-                            <div>
-                                {isAnnualOnly && billing === 'monthly' ? (
-                                    <div>
-                                        <div className="flex items-baseline gap-1">
-                                            <span className="text-3xl font-extrabold text-apple-text tracking-tight font-sans">
-                                                {formatCurrency(getPrice(plan, 'monthly', 0))}
-                                            </span>
-                                            <span className="text-sm text-apple-textMuted">/ month</span>
+                            {plan.hidePrice || plan.name?.includes('Tier 3') ? null : (
+                                <div>
+                                    {isAnnualOnly && billing === 'monthly' ? (
+                                        <div>
+                                            <div className="flex items-baseline gap-1">
+                                                <span className="text-3xl font-extrabold text-apple-text tracking-tight font-sans">
+                                                    {formatCurrency(getPrice(plan, 'monthly', 0))}
+                                                </span>
+                                                <span className="text-sm text-apple-textMuted">/ month</span>
+                                            </div>
+                                            <p className="text-[11px] text-amber-600 font-semibold mt-1.5 bg-amber-50 border border-amber-100 rounded-lg px-2.5 py-1 inline-block">
+                                                Annual commitment only
+                                            </p>
                                         </div>
-                                        <p className="text-[11px] text-amber-600 font-semibold mt-1.5 bg-amber-50 border border-amber-100 rounded-lg px-2.5 py-1 inline-block">
-                                            Annual commitment only
-                                        </p>
-                                    </div>
-                                ) : (
-                                    <div className="flex items-baseline gap-1">
-                                        <span className="text-3xl font-extrabold text-apple-text tracking-tight price-val font-sans">
-                                            {formatCurrency(price)}
-                                        </span>
-                                        <span className="text-sm text-apple-textMuted">
-                                            {isPerUser ? '/ user / month' : '/ month'}
-                                        </span>
-                                    </div>
-                                )}
+                                    ) : (
+                                        <div className="flex items-baseline gap-1">
+                                            <span className="text-3xl font-extrabold text-apple-text tracking-tight price-val font-sans">
+                                                {formatCurrency(price)}
+                                            </span>
+                                            <span className="text-sm text-apple-textMuted">
+                                                {isPerUser ? '/ user / month' : '/ month'}
+                                            </span>
+                                        </div>
+                                    )}
 
-                                {/* Flat note */}
-                                {(typeof plan.flatNote === 'object' ? plan.flatNote[billing] : plan.flatNote) && (
-                                    <p className="text-[11px] text-slate-500 mt-2 leading-snug">
-                                        {typeof plan.flatNote === 'object' ? plan.flatNote[billing] : plan.flatNote}
-                                    </p>
-                                )}
-                            </div>
+                                    {/* Flat note */}
+                                    {(typeof plan.flatNote === 'object' ? plan.flatNote[billing] : plan.flatNote) && (
+                                        <p className="text-[11px] text-slate-500 mt-2 leading-snug">
+                                            {typeof plan.flatNote === 'object' ? plan.flatNote[billing] : plan.flatNote}
+                                        </p>
+                                    )}
+                                </div>
+                            )}
 
                             {/* Features */}
                             <ul className="space-y-2.5 text-sm text-slate-700 pt-4 border-t border-gray-100">
